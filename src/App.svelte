@@ -5,6 +5,15 @@
   const increment = () => {
     count++;
   };
+  let numbers: number[] = [1, 2, 3];
+  //sum all numbers in array with reduce
+
+  const sumNumbers = () => numbers.reduce((t, n) => t + n, 0);
+  let sum = sumNumbers();
+  const incrementNumber = () => {
+    numbers = [...numbers, numbers.length + 1];
+    sum = sumNumbers();
+  };
 </script>
 
 <main>
@@ -16,6 +25,13 @@
   </p>
   <button on:click={increment}>Increment +1</button>
   <div>{count} times clicked</div>
+  <div>
+    <h3>Updating</h3>
+    <div>
+      <p>{numbers.join(" + ")} = {sum}</p>
+      <button on:click={incrementNumber}>Increment +1</button>
+    </div>
+  </div>
 </main>
 
 <style>

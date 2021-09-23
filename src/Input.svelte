@@ -23,7 +23,7 @@
   <input {value} on:input={handleInput} />
   {#if loading}
     <div>Loading...</div>
-  {:else if response.length > 0}
+  {:else}
     <div class="film-container">
       {#each response as { Title: title, Year: year, Poster: poster }, index}
         <article class="film">
@@ -36,9 +36,10 @@
           </h3>
           <img src={poster} alt={title} />
         </article>
+      {:else}
+        <div>No hay resultados</div>
       {/each}
     </div>
-  {:else}<div>No tenemos pelis</div>
   {/if}
 </div>
 

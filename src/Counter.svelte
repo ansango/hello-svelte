@@ -1,5 +1,6 @@
 <script lang="ts">
   export let initialCounter: number = 0;
+  export let maxCounter: number = 10;
   let counter: number = initialCounter;
 
   const increment = (): void => {
@@ -7,8 +8,8 @@
   };
 
   $: isEvenOrOdd = counter % 2 === 0 ? "even" : "odd";
-  $: if (counter >= 12) {
-    counter = 12;
+  $: if (counter > maxCounter) {
+    counter = maxCounter;
   }
 </script>
 

@@ -1,5 +1,4 @@
 <script lang="ts">
-  
   import Movie from "./Movie.svelte";
   let value = "";
   let response: any = [];
@@ -35,6 +34,13 @@
         <div>No hay resultados</div>
       {/each}
     </div>
+  {:catch error}
+    <p>
+      <span role="img" aria-label="error">❌</span>{error}<span
+        role="img"
+        aria-label="error">❌</span
+      >
+    </p>
   {/await}
 </div>
 

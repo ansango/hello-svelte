@@ -5,7 +5,7 @@
   const handleInput = (event) => (value = event.target.value);
 
   $: {
-    if (value.trim().length > 5) {
+    if (value.trim().length > 2) {
       loading = true;
       setTimeout(() => {
         fetch(`https://www.omdbapi.com/?s=${value}&apikey=422350ff`)
@@ -25,11 +25,17 @@
     <div>Loading...</div>
   {:else if response.length > 0}
     <div class="film-container">
-      {#each response as movie}
-        <div class="film">
-          <h3>{movie.Title} - <span>{movie.Year}</span></h3>
-          <img src={movie.Poster} alt={movie.Title} />
-        </div>
+      {#each response as { Title: title, Year: year, Poster: poster }, index}
+        <article class="film">
+          <h3>
+            <span># {index + 1}</span>
+            {title} - <span>{year}</span>
+            {#if 2021 - year < 5}
+              <span role="img" aria-label="new">🆕</span>
+            {/if}
+          </h3>
+          <img src={poster} alt={title} />
+        </article>
       {/each}
     </div>
   {:else}<div>No tenemos pelis</div>

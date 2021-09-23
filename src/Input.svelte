@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Movie from "./Movie.svelte";
   let value = "";
   let loading = false;
   let response = [];
@@ -26,16 +27,7 @@
   {:else}
     <div class="film-container">
       {#each response as { Title: title, Year: year, Poster: poster }, index}
-        <article class="film">
-          <h3>
-            <span># {index + 1}</span>
-            {title} - <span>{year}</span>
-            {#if 2021 - year < 5}
-              <span role="img" aria-label="new">🆕</span>
-            {/if}
-          </h3>
-          <img src={poster} alt={title} />
-        </article>
+        <Movie {index} {title} {year} {poster} />
       {:else}
         <div>No hay resultados</div>
       {/each}

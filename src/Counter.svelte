@@ -2,11 +2,16 @@
   export let initialCounter: number = 0;
   let counter: number = initialCounter;
 
-  const increment = () => {
+  const increment = (): void => {
     counter++;
   };
 
   $: isEvenOrOdd = counter % 2 === 0 ? "even" : "odd";
+  $: {
+    if (counter >= 12) {
+      counter = 12;
+    }
+  }
 </script>
 
 <div>

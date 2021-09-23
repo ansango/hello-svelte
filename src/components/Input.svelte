@@ -46,6 +46,18 @@
 
   .film-container {
     display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    .film-container {
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+  }
+
+  @media (min-width: 992px) {
+    .film-container {
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
+    }
   }
 </style>

@@ -1,38 +1,38 @@
 <script lang="ts">
   import Movie from "./Movie.svelte";
   let value = "";
-  let loading = false;
-  let response = [];
+  let response: any = [];
+
   const handleInput = (event) => (value = event.target.value);
+
+  const getMovies = async (value) => {
+    const response = await fetch(
+      `https://www.omdbapi.com/?s=${value}&apikey=422350ff`
+    );
+    const data = await response.json();
+    return data.Search;
+  };
 
   $: {
     if (value.trim().length > 2) {
-      loading = true;
-      setTimeout(() => {
-        fetch(`https://www.omdbapi.com/?s=${value}&apikey=422350ff`)
-          .then((res) => res.json())
-          .then((data) => {
-            response = data.Search || [];
-            loading = false;
-          });
-      }, 1000);
+      response = getMovies(value);
     }
   }
 </script>
 
 <div class="container">
   <input {value} on:input={handleInput} />
-  {#if loading}
+  {#await response}
     <div>Loading...</div>
-  {:else}
+  {:then movies}
     <div class="film-container">
-      {#each response as { Title: title, Year: year, Poster: poster }, index}
+      {#each movies as { Title: title, Year: year, Poster: poster }, index}
         <Movie {index} {title} {year} {poster} />
       {:else}
         <div>No hay resultados</div>
       {/each}
     </div>
-  {/if}
+  {/await}
 </div>
 
 <style>

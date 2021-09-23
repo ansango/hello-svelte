@@ -48,9 +48,4 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
-
-  .film {
-    text-align: center;
-    padding: 1rem;
-  }
 </style>

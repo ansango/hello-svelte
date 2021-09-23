@@ -6,7 +6,15 @@
   };
 </script>
 
-<Counter initialCounter={9} {...commonProps} />
-<Counter initialCounter={9} {...commonProps} />
-<Counter initialCounter={9} {...commonProps} />
-<Input />
+<div>
+  <h1>Movies Search</h1>
+  <div>
+    <Input />
+  </div>
+</div>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>

@@ -12,3 +12,10 @@
   </h3>
   <img src={poster} alt={title} />
 </article>
+
+<style>
+  .film {
+    text-align: center;
+    padding: 1rem;
+  }
+</style>

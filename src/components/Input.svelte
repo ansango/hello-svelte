@@ -1,4 +1,5 @@
 <script lang="ts">
+  
   import Movie from "./Movie.svelte";
   let value = "";
   let response: any = [];
@@ -9,8 +10,12 @@
     const response = await fetch(
       `https://www.omdbapi.com/?s=${value}&apikey=422350ff`
     );
-    const data = await response.json();
-    return data.Search;
+    if (response.ok) {
+      const data = await response.json();
+      return data.Search || [];
+    } else {
+      throw new Error("Something went wrong");
+    }
   };
 
   $: {
@@ -22,9 +27,7 @@
 
 <div class="container">
   <input {value} on:input={handleInput} />
-  {#await response}
-    <div>Loading...</div>
-  {:then movies}
+  {#await response then movies}
     <div class="film-container">
       {#each movies as { Title: title, Year: year, Poster: poster }, index}
         <Movie {index} {title} {year} {poster} />

@@ -7,10 +7,8 @@
   };
 
   $: isEvenOrOdd = counter % 2 === 0 ? "even" : "odd";
-  $: {
-    if (counter >= 12) {
-      counter = 12;
-    }
+  $: if (counter >= 12) {
+    counter = 12;
   }
 </script>
 

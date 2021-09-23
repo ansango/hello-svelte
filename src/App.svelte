@@ -1,9 +1,5 @@
 <script>
-  import Counter from "./Counter.svelte";
-  import Input from "./Input.svelte";
-  const commonProps = {
-    maxCounter: 15,
-  };
+  import Input from "./components/Input.svelte";
 </script>
 
 <div>
